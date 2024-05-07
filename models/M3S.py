@@ -311,12 +311,12 @@ class M3S_Trainer(embedder):
             for i in range(self.num_classes):
                 # 将当前类的已标记数据点加入正样本集
                 class_labeled_indices = labeled_indices[self.labels[labeled_indices] == i]
-                combined_positive_indices = torch.cat([torch.tensor(positive_samples[i], dtype=torch.long, device=self.device), class_labeled_indices])
+                combined_positive_indices = torch.cat([positive_samples[i], class_labeled_indices])
                 positive_samples[i] = rep_tensor[combined_positive_indices]
             
                 # 负样本包括KNN找到的负样本和其他类的已标记数据点
                 other_class_labeled_indices = labeled_indices[self.labels[labeled_indices] != i]
-                combined_negative_indices = torch.cat([torch.tensor(negative_samples[i], dtype=torch.long, device=self.device), other_class_labeled_indices])
+                combined_negative_indices = torch.cat([negative_samples[i], other_class_labeled_indices])
                 negative_samples[i] = rep_tensor[combined_negative_indices]
         
             # 计算对比损失
