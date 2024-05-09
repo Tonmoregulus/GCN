@@ -133,7 +133,7 @@ class M3S_Trainer(embedder):
             unlabeled_indices = torch.where(~self.train_mask)[0]
             
             # KNN Search using updated centroids
-            n_neighbors = 30
+            n_neighbors = self.args.KNNneighbors
             knn = NearestNeighbors(n_neighbors=n_neighbors)
             knn.fit(rep[unlabeled_indices.cpu()])
             # knn.fit(rep)      
