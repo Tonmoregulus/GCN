@@ -21,6 +21,7 @@ def parse_args():
     parser.add_argument("--stage", type=int, default=5)
     parser.add_argument("--clustering", action='store_true', default=True)
     parser.add_argument("--num_K", type=int, default=200)
+    parser.add_argument("--KNNneighbors", type=int, default=30)
     parser.add_argument("--device", '-d', type=int, default=0, help="GPU to use")    
     
     return parser.parse_known_args()[0]
